@@ -14,29 +14,41 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:hint="မည်"
-            android:inputType="textPersonName"
-            android:paddingLeft="10dp"
+        <RelativeLayout
+            android:id="@+id/lili"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+            <EditText
+                android:id="@+id/etName"
+                android:ems="13"
+                android:paddingLeft="10dp"
+                android:hint="Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/chDebtStatus"
+                android:text="အကြွေး"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:id="@+id/liAdd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/etName"
-            app:layout_constraintStart_toStartOf="@+id/etName"
-            app:layout_constraintTop_toBottomOf="@+id/etName">
+            app:layout_constraintEnd_toEndOf="@+id/lili"
+            app:layout_constraintStart_toStartOf="@+id/lili"
+            app:layout_constraintTop_toBottomOf="@+id/lili">
 
             <EditText
                 android:id="@+id/etNo"
@@ -81,8 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/etName"
-            app:layout_constraintStart_toStartOf="@+id/etName"
+            app:layout_constraintEnd_toEndOf="@+id/lili"
+            app:layout_constraintStart_toStartOf="@+id/lili"
             app:layout_constraintTop_toBottomOf="@+id/liAdd">
 
             <LinearLayout
