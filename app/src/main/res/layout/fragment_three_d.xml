@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".navfragment.ThreeDFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backback">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+        <LinearLayout
+            android:id="@+id/btnUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <Button
+                android:id="@+id/btHoteList"
+                style="@style/btn"
+                android:layout_marginRight="12dp"
+                android:text="@string/htoeList" />
+
+            <Button
+                android:id="@+id/btPoutList"
+                style="@style/btn"
+                android:layout_marginLeft="12dp"
+                android:text="@string/poutList" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDown"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/btnUp"
+            app:layout_constraintStart_toStartOf="@id/btnUp"
+            app:layout_constraintTop_toBottomOf="@+id/btnUp">
+
+            <Button
+                android:id="@+id/btHtwetList"
+                style="@style/btn"
+                android:layout_marginRight="12dp"
+                android:text="@string/htwetList" />
+
+            <Button
+                android:id="@+id/btTotalList"
+                style="@style/btn"
+                android:layout_marginLeft="12dp"
+                android:text="@string/totalList" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btHtoemal"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/btnback"
+            android:text="@string/hote"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/btnDown"
+            app:layout_constraintStart_toStartOf="@+id/btnDown"
+            app:layout_constraintTop_toBottomOf="@+id/btnDown" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:elevation="3dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

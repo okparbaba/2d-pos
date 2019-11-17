@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginVertical="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/liAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="အကွက်"
+            android:ems="5"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:inputType="number"
+            android:paddingLeft="10dp" />
+
+        <EditText
+            android:id="@+id/amount"
+            android:ems="5"
+            android:maxEms="2"
+            android:maxLines="1"
+            android:layout_toEndOf="@+id/no"
+            android:layout_width="wrap_content"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:hint="ပမာန" />
+
+        <ImageView
+            android:id="@+id/ibtEdit"
+            android:layout_width="40dp"
+            android:padding="7dp"
+            android:layout_toLeftOf="@+id/ibtDelete"
+            android:layout_height="40dp"
+            android:src="@drawable/edit"/>
+        <ImageView
+            android:id="@+id/ibtDelete"
+            android:layout_width="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="40dp"
+            android:padding="7dp"
+            android:src="@drawable/delete"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

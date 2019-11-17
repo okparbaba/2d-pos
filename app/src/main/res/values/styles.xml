@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/backback</item>
+    </style>
+    <style name="btn" >
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:background">@color/btnback</item>
+    </style>
+    <style name="formDropDown">
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:background">@color/backback</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:elevation">5dp</item>
+        <item name="android:drawableRight"></item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+</resources>
