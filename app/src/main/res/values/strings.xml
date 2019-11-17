@@ -10,4 +10,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm">Confirm &amp; Print</string>
+    <string-array name="sp_style">
+        <item>ရိုးရိုး</item>
+        <item>ပတ်</item>
+        <item>ထိပ်</item>
+        <item>ပိတ်</item>
+    </string-array>
 </resources>

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,12 +49,14 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
             R.id.btConfirm->{
                 didTapButton(btConfirm)
                 var str = ""
+                var total = 0
                 for (i in list){
-                    str+="${i.no} \t ${i.amount} \n"
+                    str+="${i.no} \t ${i.amount} MMk\n"
+                    total+=i.amount!!.toInt()
                 }
                 AlertDialog.Builder(activity)
                     .setTitle("ဘောက်ချာပေးမှာသေချာသည်?")
-                    .setMessage("ထိုးထားသည့်အကွက်များစစ်ပါ\n အကွက်\t ပမာန\n$str")
+                    .setMessage("ထိုးထားသည့်အကွက်များစစ်ပါ\nအကွက်\tပမာ\n$str\nစုစုပေါင်း\t $total ကျပ်")
                     .setIcon(R.drawable.success)
                     .setPositiveButton(android.R.string.yes){
                             _, _ ->
@@ -68,6 +71,7 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
     private fun addSquare() {
         val no = etNo.text.toString()
         val amount = etAmount.text.toString()
+        val style = spStyle.selectedItemPosition
 
         if (TextUtils.isEmpty(no)){
             etNo.error = "Fill"
@@ -80,9 +84,45 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
             etAmount.requestFocus()
             return
         }
+        when(style){
+            //simple
+            0->{
+                val htoemal = Htoemal(no,amount)
+                list.add(htoemal)
+            }
+            //pat
+            1->{
+                val num = no[0]
+                for (i in 0..9){
+                    val htoemal = Htoemal("$num$i",amount)
+                    list.add(htoemal)
+                }
+                for (i in 0..9){
+                    if ((i.toString()==num.toString())) continue
+                    val htoemal = Htoemal("$i$num",amount)
+                    list.add(htoemal)
+                }
 
-        val htoemal = Htoemal(no,amount)
-        list.add(htoemal)
+            }
+            //htate
+            2->{
+                val num = no[0]
+                for (i in 0..9){
+                    val htoemal = Htoemal("$num$i",amount)
+                    list.add(htoemal)
+                }
+            }
+            //pate
+            3->{
+                val num = no[0]
+                for (i in 0..9){
+                    val htoemal = Htoemal("$i$num",amount)
+                    list.add(htoemal)
+                }
+            }
+        }
+
+
         adapter.notifyDataSetChanged()
     }
 

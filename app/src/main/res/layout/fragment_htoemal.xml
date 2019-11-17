@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/liAdd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,10 +40,9 @@
 
             <EditText
                 android:id="@+id/etNo"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:ems="2"
+                android:ems="4"
                 android:maxLength="2"
                 android:maxLines="1"
                 android:inputType="number"
@@ -52,45 +51,68 @@
 
             <EditText
                 android:id="@+id/etAmount"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:maxEms="2"
+                android:paddingLeft="10dp"
+                android:layout_toEndOf="@+id/etNo"
+                android:ems="7"
                 android:maxLines="1"
                 android:inputType="number"
                 android:hint="ပမာန" />
 
+            <Spinner
+                android:id="@+id/spStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:spinnerMode="dialog"
+                android:entries="@array/sp_style"
+                android:layout_toLeftOf="@+id/ibtAdd"
+                android:src="@drawable/plus" />
             <ImageView
                 android:id="@+id/ibtAdd"
-                android:layout_width="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_weight="3"
                 android:src="@drawable/plus" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/liAdd" />
-
-        <Button
-            android:id="@+id/btConfirm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@color/confirm_btn_back"
-            android:text="@string/confirm"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/etName"
             app:layout_constraintStart_toStartOf="@+id/etName"
-            app:layout_constraintTop_toBottomOf="@+id/rv" />
+            app:layout_constraintTop_toBottomOf="@+id/liAdd">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp" />
+
+                <Button
+                    android:id="@+id/btConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/confirm_btn_back"
+                    android:text="@string/confirm"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
