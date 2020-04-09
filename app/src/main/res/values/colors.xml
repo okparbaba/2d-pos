@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E91E63</color>
-    <color name="colorPrimaryDark">#E91E63</color>
-    <color name="btnback">#E91E63</color>
+    <color name="colorPrimary">#5E35B1</color>
+    <color name="colorPrimaryDark">#5E35B1</color>
+    <color name="btnback">#5E35B1</color>
     <color name="backback">#ffffff</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="someColor">#E91E63</color>
+    <color name="colorAccent">#039BE5</color>
+    <color name="someColor">#5E35B1</color>
     <color name="confirm_btn_back">#43B05C</color>
 </resources>

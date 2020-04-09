@@ -48,7 +48,7 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
                 var str = ""
                 var total = 0
                 for (i in list) {
-                    str += "${i.no} \t ${i.amount} MMk\n"
+                    str += "${i.no} \t ${i.amount} ကျပ်\n"
                     total += i.amount!!.toInt()
                 }
                 AlertDialog.Builder(activity)
@@ -75,14 +75,14 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
         val saveDate: String
         saveDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+            val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
             current.format(formatter)
         } else {
-            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val sdf = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
             sdf.format(Date())
         }
 
-        class SaveUser:AsyncTask<Void,Void,Long>(){
+        class SaveUser : AsyncTask<Void, Void, Long>() {
             override fun doInBackground(vararg p0: Void?): Long {
                 val user = User()
                 user.name = name
@@ -99,8 +99,8 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
             override fun onPostExecute(result: Long?) {
                 super.onPostExecute(result)
                 toast("Saved User")
-                class SaveUserData:AsyncTask<Void,Void,Void>(){
-                    var id:Int? = 0
+                class SaveUserData : AsyncTask<Void, Void, Void>() {
+                    var id: Int? = 0
                     override fun doInBackground(vararg p0: Void?): Void? {
                         val db = getInstance(activity!!).appDatabase
 
@@ -138,12 +138,14 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
         val no = etNo.text.toString()
         val amount = etAmount.text.toString()
         val style = spStyle.selectedItemPosition
-
-        if (TextUtils.isEmpty(no)) {
-            etNo.error = "Fill"
-            etNo.requestFocus()
-            return
+        if (style !in 4..6){
+            if (TextUtils.isEmpty(no)) {
+                etNo.error = "Fill"
+                etNo.requestFocus()
+                return
+            }
         }
+
 
         if (TextUtils.isEmpty(amount)) {
             etAmount.error = "Fill"
@@ -185,6 +187,38 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
                     val htoemal = Htoemal("$i$num", amount)
                     list.add(htoemal)
                 }
+            }
+            //Natka
+            4 -> {
+                val htoemal0 = Htoemal("18", amount)
+                val htoemal1 = Htoemal("70", amount)
+                val htoemal2 = Htoemal("24", amount)
+                val htoemal3 = Htoemal("35", amount)
+                val htoemal4 = Htoemal("96", amount)
+                list.addAll(listOf(htoemal0,htoemal1,htoemal2,htoemal3,htoemal4))
+            }
+            //Power
+            5 -> {
+                val htoemal0 = Htoemal("05", amount)
+                val htoemal1 = Htoemal("16", amount)
+                val htoemal2 = Htoemal("27", amount)
+                val htoemal3 = Htoemal("38", amount)
+                val htoemal4 = Htoemal("94", amount)
+                list.addAll(listOf(htoemal0,htoemal1,htoemal2,htoemal3,htoemal4))
+            }
+            //Apuu
+            6 -> {
+                val htoemal0 = Htoemal("00", amount)
+                val htoemal1 = Htoemal("11", amount)
+                val htoemal2 = Htoemal("22", amount)
+                val htoemal3 = Htoemal("33", amount)
+                val htoemal5 = Htoemal("44", amount)
+                val htoemal6 = Htoemal("55", amount)
+                val htoemal7 = Htoemal("66", amount)
+                val htoemal8 = Htoemal("77", amount)
+                val htoemal9 = Htoemal("88", amount)
+                val htoemal4 = Htoemal("99", amount)
+                list.addAll(listOf(htoemal0,htoemal1,htoemal2,htoemal3,htoemal4,htoemal5,htoemal6,htoemal7,htoemal8,htoemal9))
             }
         }
 

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Special Calculator</string>
     <string name="htoeList">ထိုးထားတဲ့ စာရင်း</string>
-    <string name="poutList">ပေါက်တဲ့သူ စာရင်း</string>
+    <string name="poutList">အကြွေး စာရင်း</string>
     <string name="hote">ထိုးမယ်</string>
     <string name="htwetList">ထွက်တဲ့စာရင်း</string>
     <string name="totalList">အားလုံးပေါင်း</string>
@@ -15,5 +15,8 @@
         <item>ပတ်</item>
         <item>ထိပ်</item>
         <item>ပိတ်</item>
+        <item>နက္ခ</item>
+        <item>ပါဝါ</item>
+        <item>အပူး</item>
     </string-array>
 </resources>

@@ -37,6 +37,7 @@
                 android:id="@+id/btPoutList"
                 style="@style/btn"
                 android:layout_marginLeft="12dp"
+                android:visibility="gone"
                 android:text="@string/poutList" />
         </LinearLayout>
 
@@ -54,7 +55,7 @@
                 android:id="@+id/btHtwetList"
                 style="@style/btn"
                 android:layout_marginRight="12dp"
-                android:text="@string/htwetList" />
+                android:text="ပေါက်တဲ့သူစာရင်း" />
 
             <Button
                 android:id="@+id/btTotalList"

@@ -16,4 +16,7 @@ interface UserDao {
 
     @Query("select * from user")
     fun getAllUser():List<User>
+
+    @Query("Select * from user where id ==:id")
+    fun getUserById(id:Int):User
 }
