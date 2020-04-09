@@ -18,4 +18,7 @@ class UserData:Serializable {
     @ColumnInfo(name = "amount")
     var amount:String? = ""
 
+    @ColumnInfo(name = "date")
+    var date:String? = ""
+
 }

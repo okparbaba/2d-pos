@@ -113,6 +113,7 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
                             userData.user_id = id
                             userData.cell = no
                             userData.amount = amount
+                            userData.date = saveDate
                             doAsync {
                                 db.userDataDao().insertUserData(userData)
                             }

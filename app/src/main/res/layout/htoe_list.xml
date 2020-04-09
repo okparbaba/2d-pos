@@ -14,7 +14,7 @@
         android:paddingLeft="30dp">
         <TextView
             android:id="@+id/tvDebtStatus"
-            android:text="အကြွေးရှိ"
+            android:text="အကြွေး"
             android:layout_toRightOf="@+id/tvName"
             android:padding="5sp"
             android:textStyle="bold"

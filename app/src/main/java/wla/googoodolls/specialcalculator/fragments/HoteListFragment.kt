@@ -48,8 +48,6 @@ class HoteListFragment : Fragment() {
         htoeListAdapter = HtoeListAdapter(list)
         rvHoteList?.layoutManager = LinearLayoutManager(activity)
         rvHoteList?.adapter = htoeListAdapter
-
-
         val today: String
         today = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val current = LocalDateTime.now()
@@ -59,7 +57,7 @@ class HoteListFragment : Fragment() {
             val sdf = SimpleDateFormat("dd-M-yyyy")
             sdf.format(Date())
         }
-        
+
         getUser(today)
        // Log.e("datadata2",today)
         btByDate?.setOnClickListener {
@@ -101,9 +99,12 @@ class HoteListFragment : Fragment() {
 
             override fun onPostExecute(result: List<User>?) {
                 super.onPostExecute(result)
-                for (i in result as ArrayList){
-                    getUserDatas(i)
+                result?.let {
+                    for (i in result as ArrayList){
+                        getUserDatas(i)
+                    }
                 }
+
             }
 
         }
@@ -118,9 +119,12 @@ class HoteListFragment : Fragment() {
 
             override fun onPostExecute(result: List<UserData>?) {
                 super.onPostExecute(result)
-                val p = Pair(user,result as ArrayList)
-                list.add(p)
-                htoeListAdapter.notifyDataSetChanged()
+                result?.let {
+                    val p = Pair(user,result as ArrayList)
+                    list.add(p)
+                    htoeListAdapter.notifyDataSetChanged()
+                }
+
             }
         }
         GetUserDatas().execute()
