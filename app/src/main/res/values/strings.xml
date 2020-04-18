@@ -11,12 +11,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm">Confirm &amp; Print</string>
     <string-array name="sp_style">
-        <item>ရိုးရိုး</item>
+        <item>R</item>
         <item>ပတ်</item>
         <item>ထိပ်</item>
         <item>ပိတ်</item>
         <item>နက္ခ</item>
         <item>ပါဝါ</item>
         <item>အပူး</item>
+    </string-array>
+    <string-array name="sp_ampm">
+        <item>မနက်</item>
+        <item>ညနေ</item>
     </string-array>
 </resources>

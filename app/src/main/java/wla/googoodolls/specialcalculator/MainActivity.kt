@@ -1,12 +1,18 @@
 package wla.googoodolls.specialcalculator
 
+import android.Manifest
+import android.app.PendingIntent.getActivity
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.toolbar.*
 import wla.googoodolls.specialcalculator.navfragment.ThreeDFragment
 import wla.googoodolls.specialcalculator.navfragment.TwoDFragment
+
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(){
@@ -17,6 +23,19 @@ class MainActivity : AppCompatActivity(){
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         loadFragment(TwoDFragment())
+        if (Build.VERSION.SDK_INT >= 23) {
+            val permissionCheck = ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    1
+                )
+            }
+        }
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

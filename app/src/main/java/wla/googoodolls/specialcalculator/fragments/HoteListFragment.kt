@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.DatePicker
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_hote_list.*
@@ -33,6 +34,8 @@ import kotlin.collections.ArrayList
 class HoteListFragment : Fragment() {
     private lateinit var htoeListAdapter: HtoeListAdapter
     private lateinit var list:ArrayList<Pair<User,ArrayList<UserData>>>
+    private lateinit var amList:ArrayList<Pair<User,ArrayList<UserData>>>
+    private lateinit var pmList:ArrayList<Pair<User,ArrayList<UserData>>>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +48,8 @@ class HoteListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         list = ArrayList()
+        amList = ArrayList()
+        pmList = ArrayList()
         htoeListAdapter = HtoeListAdapter(list)
         rvHoteList?.layoutManager = LinearLayoutManager(activity)
         rvHoteList?.adapter = htoeListAdapter
@@ -56,6 +61,11 @@ class HoteListFragment : Fragment() {
         } else {
             val sdf = SimpleDateFormat("dd-M-yyyy")
             sdf.format(Date())
+        }
+        if (spinner.selectedItem=="am"){
+            list.addAll(amList)
+        }else if (spinner.selectedItem=="pm"){
+            list.addAll(pmList)
         }
 
         getUser(today)
@@ -80,16 +90,42 @@ class HoteListFragment : Fragment() {
                 }
                 //Log.e("datadata2","$d-$m-$year")
                 getUser("$d-$m-$year")
+                htoeListAdapter.notifyDataSetChanged()
             }, year, month, day)
             dpd.show()
         }
         btToday?.setOnClickListener {
             list.clear()
+            amList.clear()
+            pmList.clear()
             getUser(today)
+        }
+        spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                list.clear()
+                if (position==0){
+                    list.addAll(amList)
+                }else if (position==1){
+                    list.addAll(pmList)
+                }
+                htoeListAdapter.notifyDataSetChanged()
+            }
+
         }
     }
     private fun getUser(date:String){
         list.clear()
+        amList.clear()
+        pmList.clear()
         class GetUser:AsyncTask<Void,Void,List<User>>(){
             override fun doInBackground(vararg params: Void?): List<User> {
                 val db = getInstance(activity!!).appDatabase
@@ -120,9 +156,13 @@ class HoteListFragment : Fragment() {
             override fun onPostExecute(result: List<UserData>?) {
                 super.onPostExecute(result)
                 result?.let {
-                    val p = Pair(user,result as ArrayList)
-                    list.add(p)
-                    htoeListAdapter.notifyDataSetChanged()
+                    if (user.ampm=="am"){
+                        val p1 = Pair(user,result as ArrayList)
+                        amList.add(p1)
+                    }else{
+                        val p1 = Pair(user,result as ArrayList)
+                        pmList.add(p1)
+                    }
                 }
 
             }

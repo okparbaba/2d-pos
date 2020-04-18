@@ -16,6 +16,7 @@ interface UserDataDao {
     @Query("select * from userdata")
     fun getAllUsersData():List<UserData>
 
-    @Query("Select amount from userdata Where date <=:select and date >=:sub and cell ==:num")
-    fun getDataByDate(select:String,sub:String,num:String):List<String>
+    @Query("Select * from userdata Where date <=:select and date >=:sub and cell ==:num")
+    fun getDataByDate(select:String,sub:String,num:String):List<UserData>
+
 }

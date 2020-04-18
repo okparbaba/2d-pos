@@ -30,7 +30,6 @@
             <Button
                 android:id="@+id/btHoteList"
                 style="@style/btn"
-                android:layout_marginRight="12dp"
                 android:text="@string/htoeList" />
 
             <Button

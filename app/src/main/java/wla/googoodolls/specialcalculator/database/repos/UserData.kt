@@ -21,4 +21,7 @@ class UserData:Serializable {
     @ColumnInfo(name = "date")
     var date:String? = ""
 
+    @ColumnInfo(name = "ampm")
+    var ampm:String? = "am"
+
 }

@@ -24,4 +24,7 @@ class User :Serializable{
     //false is 2d and true is 3d
     @ColumnInfo(name = "lottery_status")
     var lottery_status:Boolean? = false
+
+    @ColumnInfo(name = "ampm")
+    var ampm:String? = "am"
 }

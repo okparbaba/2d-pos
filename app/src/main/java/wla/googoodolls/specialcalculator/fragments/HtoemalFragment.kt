@@ -1,6 +1,7 @@
 package wla.googoodolls.specialcalculator.fragments
 
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.os.*
@@ -65,6 +66,7 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun insertTo() {
         val name = etName.text.toString()
         val debtStatus = chDebtStatus.isChecked
@@ -73,12 +75,17 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
             return
         }
         val saveDate: String
+        val ampm:String
         saveDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val current = LocalDateTime.now()
             val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+            val formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss")
+            ampm = current.format(formatter2)
             current.format(formatter)
         } else {
             val sdf = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
+            val sdf2 = SimpleDateFormat("hh:mm:ss")
+            ampm = sdf2.format(Date())
             sdf.format(Date())
         }
 
@@ -89,7 +96,9 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
                 user.date = saveDate
                 user.debt_status = debtStatus
                 user.lottery_status = false
-
+                if (ampm<"11:59:00"){
+                    user.ampm = "am"
+                }else user.ampm = "pm"
                 val db = getInstance(activity!!).appDatabase
 
                 return db.userDao().insertUser(user)
@@ -105,7 +114,7 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
                         val db = getInstance(activity!!).appDatabase
 
                         id = result?.toInt()
-                        Log.e("userId", id.toString())
+                        //Log.e("userId", id.toString())
                         var i = 0
                         while (i < list.size) {
                             val userData = UserData()
@@ -114,6 +123,9 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
                             userData.cell = no
                             userData.amount = amount
                             userData.date = saveDate
+                            if (ampm<"11:59:00"){
+                                userData.ampm = "am"
+                            }else userData.ampm = "pm"
                             doAsync {
                                 db.userDataDao().insertUserData(userData)
                             }
@@ -156,8 +168,16 @@ class HtoemalFragment : Fragment(), View.OnClickListener {
         when (style) {
             //simple
             0 -> {
-                val htoemal = Htoemal(no, amount)
-                list.add(htoemal)
+                if (no[0] != no[1]){
+                    val htoemal = Htoemal(no, amount)
+                    val htoemal1 = Htoemal(no.reversed(),amount)
+                    list.add(htoemal)
+                    list.add(htoemal1)
+                }else{
+                    val htoemal = Htoemal(no,amount)
+                    list.add(htoemal)
+                }
+
             }
             //pat
             1 -> {
